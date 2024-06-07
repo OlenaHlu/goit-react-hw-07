@@ -5,7 +5,7 @@ export const selectNameFilter = (state) => state.filters.status;
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
-  (contacts, nameFilter) => {
+  (contacts, selectNameFilter) => {
     return contacts.filter((contact) => {
       if ("id" in contact && "name" in contact && "number" in contact) {
         if (
@@ -13,7 +13,9 @@ export const selectFilteredContacts = createSelector(
           typeof contact.name === "string" &&
           typeof contact.number === "string"
         ) {
-          return contact.name.toLowerCase().includes(nameFilter.toLowerCase());
+          return contact.name
+            .toLowerCase()
+            .includes(selectNameFilter.toLowerCase());
         }
       }
       return false;
