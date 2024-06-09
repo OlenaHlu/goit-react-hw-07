@@ -34,7 +34,7 @@ const ContactForm = () => {
     values.id = nanoid();
     const { name } = values;
     const { number } = values;
-    dispatch(addContact(name, number));
+    dispatch(addContact({ name, number }));
     actions.resetForm();
   };
 
